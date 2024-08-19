@@ -8,6 +8,9 @@ body{
     justify-content: center;
     align-items: center;
 }
-.flex-container > img{
-    max-width: 100%;
+.imagewrapper{
+    display: flex;
+    width: 75vw;
+    align-items: center;
+    justify-content: center;
 }
