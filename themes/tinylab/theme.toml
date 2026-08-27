@@ -1,0 +1,11 @@
+name = 'tinylab'
+license = 'MIT'
+licenselink = 'https://thetinylab.cloud/about'
+description = 'Custom theme for theTinyLab — dark, red-on-navy, zero external requests.'
+homepage = 'https://thetinylab.cloud/'
+tags = ['dark', 'blog', 'minimal']
+min_version = '0.146.0'
+
+[author]
+name = 'theTinyLab'
+homepage = 'https://thetinylab.cloud/'

@@ -1,0 +1,19 @@
+{{ define "main" }}
+  <article class="shell prose">
+    <header class="entry-header">
+      <h1>{{ .Title }}</h1>
+      {{ if .IsPage }}
+        <p class="entry-meta">
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          · {{ .ReadingTime }} min read
+        </p>
+      {{ end }}
+      {{ with .GetTerms "tags" }}
+        <div class="tag-row">
+          {{ range . }}<a class="tag" href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}
+        </div>
+      {{ end }}
+    </header>
+    {{ .Content }}
+  </article>
+{{ end }}

@@ -1,0 +1,36 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ if .IsHome }}{{ site.Title }} — {{ site.Params.tagline }}{{ else }}{{ with .Title }}{{ . }} · {{ end }}{{ site.Title }}{{ end }}</title>
+{{ with .Description | default site.Params.description }}
+  <meta name="description" content="{{ . }}">
+{{ end }}
+<link rel="canonical" href="{{ .Permalink }}">
+
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ .Title | default site.Title }}">
+<meta property="og:description" content="{{ .Description | default site.Params.description }}">
+<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta name="twitter:card" content="summary">
+
+{{ $favicon := resources.Get "img/favicon.ico" | resources.Copy "favicon.ico" }}
+<link rel="icon" href="{{ $favicon.RelPermalink }}">
+<meta name="theme-color" content="#191919">
+
+{{ $css := resources.Get "css/main.css" | minify | fingerprint }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+{{ range resources.Match "fonts/*.woff2" }}
+  {{ .Publish }}
+{{ end }}
+{{ range slice "fonts/RockyDisplay-Black.woff2" "fonts/RockyText-Regular.woff2" "fonts/jetbrains-mono-var-latin.woff2" }}
+  {{ with resources.Get . }}
+    <link rel="preload" href="{{ .RelPermalink }}" as="font" type="font/woff2" crossorigin>
+  {{ end }}
+{{ end }}
+
+{{ with .OutputFormats.Get "RSS" }}
+  <link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
+{{ end }}
+
+<meta name="generator" content="Hugo {{ hugo.Version }}">

@@ -1,0 +1,15 @@
+{{ $logo := resources.Get "img/logo.svg" }}
+<header class="site-header">
+  <div class="shell header-row">
+    <a class="brand" href="{{ site.Home.RelPermalink }}" aria-label="{{ site.Title }} — home">
+      {{ with $logo }}
+        <img src="{{ .RelPermalink }}" width="128" height="32" alt="{{ site.Title }}">
+      {{ end }}
+    </a>
+    <nav aria-label="Primary">
+      {{ range site.Menus.main }}
+        <a href="{{ .URL }}" {{ if or (eq .URL $.RelPermalink) (and ($.Ancestors) ($.IsAncestor (site.GetPage .URL))) }}aria-current="page"{{ end }}>{{ .Name }}</a>
+      {{ end }}
+    </nav>
+  </div>
+</header>

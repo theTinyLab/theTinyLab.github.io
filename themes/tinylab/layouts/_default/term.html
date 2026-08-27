@@ -1,0 +1,14 @@
+{{ define "main" }}
+  <section class="shell page-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </section>
+  <section class="shell card-grid">
+    {{ range .Pages.ByTitle }}
+      <a class="card" href="{{ .RelPermalink }}">
+        <span class="card-kicker">{{ .Pages.Len }} post{{ if ne .Pages.Len 1 }}s{{ end }}</span>
+        <span class="card-title">#{{ .LinkTitle }}</span>
+      </a>
+    {{ end }}
+  </section>
+{{ end }}

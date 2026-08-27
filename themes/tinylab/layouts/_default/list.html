@@ -1,0 +1,27 @@
+{{ define "main" }}
+  <section class="shell page-head">
+    <h1>{{ .Title }}</h1>
+    {{ with .Description }}<p class="lede">{{ . }}</p>{{ end }}
+  </section>
+
+  {{ with .Content }}
+    <section class="shell prose">{{ . }}</section>
+  {{ end }}
+
+  {{ $pages := where .Pages "Params.list" "!=" false }}
+  {{ if $pages }}
+    <section class="shell card-grid">
+      {{ range $pages.ByDate.Reverse }}
+        <a class="card" href="{{ .RelPermalink }}">
+          {{ if .IsPage }}
+            <span class="card-kicker">{{ .Date.Format "Jan 2, 2006" }}</span>
+          {{ else if .Params.status }}
+            <span class="card-kicker status status-{{ .Params.status | urlize }}">{{ .Params.status }}</span>
+          {{ end }}
+          <span class="card-title">{{ .Title }}</span>
+          {{ with .Description }}<span class="card-desc">{{ . }}</span>{{ end }}
+        </a>
+      {{ end }}
+    </section>
+  {{ end }}
+{{ end }}

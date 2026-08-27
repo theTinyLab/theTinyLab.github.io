@@ -1,0 +1,68 @@
+baseURL = 'https://thetinylab.cloud/'
+title = 'theTinyLab'
+theme = 'tinylab'
+enableRobotsTXT = true
+disableKinds = ['taxonomy', 'term']
+
+[pagination]
+  pagerSize = 10
+
+[params]
+  description = 'theTinyLab is a FOSS-only homelab run like a small business — its own certificates, DNS, identity, forge and firewalls, built in the open and documented honestly.'
+  tagline = 'Doing more with less.'
+  architecture_teaser = 'One zone per trust domain: a hardened edge, an infrastructure core, a services ring and an isolated Kubernetes platform — with exactly three ways in.'
+
+  # Homepage "what it hosts" — the live snapshot. Full inventory lives in /lab.
+  [[params.services]]
+    name = 'Internal certificate authority'
+    stack = 'step-ca + theTinyCA web UI'
+    status = 'deployed'
+
+  [[params.services]]
+    name = 'Internal DNS'
+    stack = 'Technitium pair · custom blockers + DoH'
+    status = 'deployed'
+
+  [[params.services]]
+    name = 'External DNS'
+    stack = 'Cloudflare'
+    status = 'deployed'
+
+  [[params.services]]
+    name = 'Backups'
+    stack = 'Proxmox Backup Server · 3-2-1'
+    status = 'deployed'
+
+  [[params.services]]
+    name = 'Patch monitoring'
+    stack = 'PatchMon'
+    status = 'deployed'
+
+  [[params.services]]
+    name = 'Inference engine'
+    stack = 'Ollama'
+    status = 'deployed'
+
+[[menus.main]]
+  name = 'About'
+  pageRef = '/about'
+  weight = 10
+
+[[menus.main]]
+  name = 'Lab'
+  pageRef = '/lab'
+  weight = 20
+
+[markup]
+  [markup.highlight]
+    style = 'tokyonight-moon'
+    lineNos = false
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[privacy]
+  [privacy.youtube]
+    disable = true
+  [privacy.vimeo]
+    disable = true

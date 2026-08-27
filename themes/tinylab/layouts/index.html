@@ -1,0 +1,40 @@
+{{ define "main" }}
+  {{ $logo := resources.Get "img/logo.svg" }}
+  <section class="landing">
+    {{ with $logo }}
+      <img class="landing-logo" src="{{ .RelPermalink }}" width="620" height="155" alt="{{ site.Title }}">
+    {{ end }}
+    <p class="landing-tagline">{{ site.Params.tagline }}</p>
+    <p class="landing-cue">what the lab runs ↓</p>
+  </section>
+
+  <section class="shell home-index">
+    <div class="panel">
+      <h2>What this is</h2>
+      <p class="panel-lede">{{ site.Params.description }}</p>
+      <a class="panel-more" href="/about">About the lab →</a>
+    </div>
+
+    <div class="panel">
+      <h2>What it hosts</h2>
+      <div class="svc-grid">
+        {{ range site.Params.services }}
+          <div class="svc">
+            <div class="k">{{ .name }}</div>
+            <div class="v">{{ .stack }}</div>
+            <div class="st st-{{ .status }}">
+              <span class="dot {{ if eq .status "deployed" }}ok{{ else if eq .status "in-flight" }}warn{{ else }}off{{ end }}"></span>{{ .status }}
+            </div>
+          </div>
+        {{ end }}
+      </div>
+      <p style="margin: 1rem 0 0;"><a class="panel-more" href="/lab">Full inventory →</a></p>
+    </div>
+
+    <div class="panel">
+      <h2>How it's shaped</h2>
+      <p class="panel-lede">{{ site.Params.architecture_teaser }}</p>
+      <a class="panel-more" href="/lab#architecture">Architecture →</a>
+    </div>
+  </section>
+{{ end }}
