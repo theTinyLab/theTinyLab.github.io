@@ -702,6 +702,50 @@ a:hover {
   color: var(--accent-soft);
 }
 
+/* ---------- footer: the lab's sites ---------- */
+
+.footer-sites {
+  padding-block: 1.4rem 0.9rem;
+}
+
+.footer-sites .kicker {
+  margin: 0 0 0.6rem;
+}
+
+.footer-sites-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem 2.4rem;
+}
+
+.footer-sites-list li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.footer-sites-list a {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.footer-sites-list a:hover {
+  color: var(--accent-soft);
+}
+
+.footer-sites-list span {
+  color: var(--faint);
+  font-size: 0.8rem;
+}
+
+.footer-sites + .footer-row {
+  border-top: 1px solid var(--border);
+}
+
 /* ---------- responsive ---------- */
 
 @media (max-width: 640px) {
